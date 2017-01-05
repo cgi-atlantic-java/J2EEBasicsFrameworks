@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+  <!-- Create a datasource - sql.enforce_strict_size=true means that column sizes are actually enforced -->
+  <New class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg></Arg>
+    <Arg>jdbc/mem</Arg>
+    <Arg>
+      <New class="org.hsqldb.jdbc.JDBCDataSource">
+        <Set name="databaseName">db</Set>
+        <Set name="url">jdbc:hsqldb:mem:db;sql.enforce_strict_size=true</Set>
+        <Set name="user">SA</Set>
+        <!-- Must specify type="String" to set the value to an empty String instead of null -->
+        <Set name="password" type="String"></Set>
+      </New>
+    </Arg>
+  </New>
+</Configure>
